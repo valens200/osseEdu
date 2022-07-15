@@ -1,9 +1,10 @@
 import './App.css';
+import Home from './pages/Home';
 
 function App() {
   return (
-    <div className="App h-[80rem] bg-[black]">
-      <h1 className='text-pink-700'>hey three</h1>
+    <div className="App w-screen h-fit">
+      <Home />
     </div>
   );
 }

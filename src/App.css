@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.listItem:hover .subContent {
+    animation: animateSubContent 2s ease-in-out;
+}
+@keyframes animateSubContent {
+    from{
+        bottom: -2rem
+    }
+    to{
+        bottom: 0;
+    }
+}
