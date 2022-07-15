@@ -20,12 +20,15 @@ const NavBar = () => {
           <li className='decoration-none text-white hover:text-[green] cursor-pointer transition-all duration-500 p-2'>Apply now</li>
           <div className='listItem transition-all duration-500' onMouseEnter={()=>setShowList(true)} onMouseLeave={()=>setShowList(false)} >
              <li className=' decoration-none text-white hover:text-[green] cursor-pointer transition-all duration-500 p-2'>Science<KeyboardArrowDownSharpIcon fontSize='2' /></li>
-             <div className='subContent w-20 h-5 absolute bg-white transition-all duration-500' style={{display: showList ? '' : 'none'}}>
-
+             <div className='subContent w-fit h-fit p-4 absolute bg-white transition-all duration-500' style={{display: showList ? null : 'none'}}>
+              <li className='p-1'>Biology</li>
+              <li className='p-1'>Physics</li>
+              <li className='p-1'>Chemistry</li>
+              <li className='p-1'>Geography</li>
              </div>
           </div>
 
-          <div>
+          <div className='listItem transition-all duration-500' onMouseEnter={()=>setShowList(true)} onMouseLeave={()=>setShowList(false)}>
              <li className='decoration-none text-white hover:text-[green] cursor-pointer transition-all duration-500 p-2'>Technology <KeyboardArrowDownSharpIcon fontSize='2' /></li>
           </div>
 

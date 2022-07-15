@@ -5,13 +5,14 @@
 }
 
 .listItem:hover .subContent {
-    animation: animateSubContent 2s ease-in-out;
+    animation: animateSubContent .1s ease-in-out;
 }
+
 @keyframes animateSubContent {
     from{
-        bottom: -2rem
+        bottom: 40rem
     }
     to{
-        bottom: 0;
+        bottom: 42rem;
     }
 }
