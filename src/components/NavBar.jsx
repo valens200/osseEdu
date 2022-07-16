@@ -10,33 +10,32 @@ const NavBar = () => {
      {name: 'APPLY NOW', active: false},
      {name: 'SCIENCE', dropdownList: ['Biology', 'Chemistry', 'Physics', 'Biology'], active: false},
      {name: 'TECHNOLOGY', dropdownList: ['Web_development', 'Software_Engineering', 'Network_systems', 'Database_administration'], active: false},
-     {name: 'SCIENCE', dropdownList: ['Electrical', 'Mechanical', 'Construction', 'Civil'], active: false},
-     {name: 'ENGINEERING', dropdownList: ['Geometry', 'Calculus', 'Probability', 'Differentials', 'Derivatives', 'Algebra'], active: false},
+     {name: 'ENGINEERING', dropdownList: ['Electrical', 'Mechanical', 'Construction', 'Civil'], active: false},
+     {name: 'MATH', dropdownList: ['Geometry', 'Calculus', 'Probability', 'Differentials', 'Derivatives', 'Algebra'], active: false},
      {name: 'CONTACT US', active: true}
   ]);
 
   const handleActiveness = (id) =>{
       setNavItems(prevNavitems=>{
-        return prevNavitems.map((navItemData, index)=>{
-
-          if(navItemData.name === id) {
-            if(navItemData.active === false) {
-              for(let i of navItemsData) {
-                if(i.active === true) {
-                  i.active = false;
-                }
-              }
-              return {...navItemData, active: true}
-            }
+        return prevNavitems.map(prevNavItemData=>{
+          if(prevNavItemData.active === true) {
+            return {...prevNavItemData, active: false};
           }
+          return prevNavItemData.name === id ? {...prevNavItemData, active: true} : prevNavItemData;
+        })
+    })
+  }
 
-          return [...prevNavitems];
+  const handleInactiveness = (id) =>{
+    setNavItems(prevNavitems=>{
+      return prevNavitems.map(prevNavItemData=>{
+        return prevNavItemData.active === true && prevNavItemData.name === id ? {...prevNavItemData, active: false} : prevNavItemData;
       })
     })
   }
 
   const navItems = navItemsData.map((navItem, index)=>{
-    return <NavItem navData={navItem} handleActiveness={handleActiveness} key={index} />
+    return <NavItem navData={navItem} handleActiveness={handleActiveness} handleInactiveness={handleInactiveness} key={index} />
   })
 
   return (

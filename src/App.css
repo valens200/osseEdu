@@ -16,3 +16,17 @@
         bottom: 42rem;
     }
 }
+
+
+.mathListItem {
+    animation: animateMathListItem .3s ease-in-out;
+}
+
+@keyframes animateMathListItem {
+    from {
+        bottom: 36rem;
+    }
+    to {
+        bottom: 38rem;
+    }
+}
