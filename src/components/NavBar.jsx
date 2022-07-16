@@ -1,10 +1,43 @@
 import React, { useState } from 'react'
-import KeyboardArrowDownSharpIcon from '@mui/icons-material/KeyboardArrowDownSharp';
+import NavItem from './NavItem';
 
 
 const NavBar = () => {
 
-  const [showList, setShowList] = useState(false);
+  const [navItemsData, setNavItems] = useState([
+     {name: 'HOME', active: false},
+     {name: 'COURSES', active: false},
+     {name: 'APPLY NOW', active: false},
+     {name: 'SCIENCE', dropdownList: ['Biology', 'Chemistry', 'Physics', 'Biology'], active: false},
+     {name: 'TECHNOLOGY', dropdownList: ['Web_development', 'Software_Engineering', 'Network_systems', 'Database_administration'], active: false},
+     {name: 'SCIENCE', dropdownList: ['Electrical', 'Mechanical', 'Construction', 'Civil'], active: false},
+     {name: 'ENGINEERING', dropdownList: ['Geometry', 'Calculus', 'Probability', 'Differentials', 'Derivatives', 'Algebra'], active: false},
+     {name: 'CONTACT US', active: true}
+  ]);
+
+  const handleActiveness = (id) =>{
+      setNavItems(prevNavitems=>{
+        return prevNavitems.map((navItemData, index)=>{
+
+          if(navItemData.name === id) {
+            if(navItemData.active === false) {
+              for(let i of navItemsData) {
+                if(i.active === true) {
+                  i.active = false;
+                }
+              }
+              return {...navItemData, active: true}
+            }
+          }
+
+          return [...prevNavitems];
+      })
+    })
+  }
+
+  const navItems = navItemsData.map((navItem, index)=>{
+    return <NavItem navData={navItem} handleActiveness={handleActiveness} key={index} />
+  })
 
   return (
     <div className='h-24 w-full bg-navBarColor flex justify-center items-center gap-[20rem] '>
@@ -15,32 +48,7 @@ const NavBar = () => {
 
       <div className='w-fit p-2 '>
         <ul className='p-8 flex gap-4 '>
-          <li className='decoration-none text-white hover:text-[green] cursor-pointer transition-all duration-500 p-2 ease-in'>Home</li>
-          <li className='decoration-none text-white hover:text-[green] cursor-pointer transition-all duration-500 p-2'>Courses</li>
-          <li className='decoration-none text-white hover:text-[green] cursor-pointer transition-all duration-500 p-2'>Apply now</li>
-          <div className='listItem transition-all duration-500' onMouseEnter={()=>setShowList(true)} onMouseLeave={()=>setShowList(false)} >
-             <li className=' decoration-none text-white hover:text-[green] cursor-pointer transition-all duration-500 p-2'>Science<KeyboardArrowDownSharpIcon fontSize='2' /></li>
-             <div className='subContent w-fit h-fit p-4 absolute bg-white transition-all duration-500' style={{display: showList ? null : 'none'}}>
-              <li className='p-1'>Biology</li>
-              <li className='p-1'>Physics</li>
-              <li className='p-1'>Chemistry</li>
-              <li className='p-1'>Geography</li>
-             </div>
-          </div>
-
-          <div className='listItem transition-all duration-500' onMouseEnter={()=>setShowList(true)} onMouseLeave={()=>setShowList(false)}>
-             <li className='decoration-none text-white hover:text-[green] cursor-pointer transition-all duration-500 p-2'>Technology <KeyboardArrowDownSharpIcon fontSize='2' /></li>
-          </div>
-
-          <div>
-             <li className='decoration-none text-white hover:text-[green] cursor-pointer transition-all duration-500 p-2'>Engineering <KeyboardArrowDownSharpIcon fontSize='2' /></li>
-          </div>
-
-          <div>
-             <li className='decoration-none text-white hover:text-[green] cursor-pointer transition-all duration-500 p-2'>Maths <KeyboardArrowDownSharpIcon fontSize='2' /></li>
-          </div>
-          <li className='decoration-none text-white hover:text-[green] cursor-pointer transition-all duration-500 p-2'>Contact Us</li>
-
+          {navItems}
         </ul>
       </div>
     </div>

@@ -4,8 +4,8 @@
     box-sizing: border-box;
 }
 
-.listItem:hover .subContent {
-    animation: animateSubContent .1s ease-in-out;
+.subContent {
+    animation: animateSubContent .3s ease-in-out;
 }
 
 @keyframes animateSubContent {
